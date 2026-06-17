@@ -12,7 +12,7 @@ I asked Claude Code (claude-sonnet-4-6) to: move all four game-logic functions (
 
 **What did the agent do?**
 
-1. Read `app.py`, `logic_utils.py`, and `tests/test_game_logic.py` to understand the existing structure.
+1. Read `app.py`, `logic_utils.py`, and `tests/test_game_logic.py` to understand existing structure.
 2. Rewrote `logic_utils.py` with all four functions — fixing the inverted hint strings in `check_guess` and removing the erroneous `+5` branch in `update_score`.
 3. Rewrote `app.py` to import from `logic_utils` and removed the `if attempts % 2 == 0` string-cast block that was breaking secret comparisons.
 4. Expanded `tests/test_game_logic.py` from 3 broken tests to 9 passing tests covering all three bugs.
@@ -96,4 +96,4 @@ def check_guess(guess, secret):
 
 **Which did you prefer and why?**
 
-claude-sonnet-4-6 gave a more complete answer — it not only found the bug but also pointed out the dead `TypeError` fallback, which is a code quality issue separate from the logic bug. The haiku model found the same root cause but stopped short of the deeper analysis. For debugging tasks where you want to understand *why* the code is wrong, not just *what* to change, the more detailed explanation from Sonnet was more useful.
+Dean's more complete response was claude-sonnet-4-6, which did not just identify the bug, but also noted the presence of the dead code `TypeError` fallback, which is a code quality concern in addition to the logic bug. The haiku model identified the same causal aspect without going so much as to analyze it. The Sonnet explanation is more useful when debugging a task in which you want to understand why the code is wrong, rather than what to change.
